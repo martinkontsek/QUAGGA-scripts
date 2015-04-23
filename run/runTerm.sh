@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo xfce4-terminal -T "prava" \
-  --working-directory=/home/martin/git -H -e "./pravaVarRun" \
+sudo xfce4-terminal -T "rights" \
+  --working-directory=/home/martin/git -H -e "./rightsVarRun.sh" \
   --tab -T "build" --working-directory=/home/martin/git \
   --tab -T "dynamips" --working-directory=/home/martin/Dynagen -H -e "dynamips -H 31001 &" \
   --tab -T "dynagen" --working-directory=/home/martin/Dynagen -H -e "./skript3" \

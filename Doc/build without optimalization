@@ -1,0 +1,11 @@
+/*
+ * Copyright (C) 2015
+ * Author:
+ *   Martin Kontsek
+ */
+How to build Quagga from Eclipse without optimalization
+Eclipse Luna 4.4
+
+Project -> Properties -> Autotools -> Configure Settings -> configure -> Advanced -> Compiler Flags -> tick  Debug (-g)
+
+

@@ -6,5 +6,5 @@ touch /var/run/eigrpd.pid
 chown quagga:quagga /var/run/zebra.pid
 chown quagga:quagga /var/run/eigrpd.pid
 
-echo "Prava nastavene."
+echo "Rights for /var/run set."
 
