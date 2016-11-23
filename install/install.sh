@@ -1,8 +1,7 @@
 #!/bin/bash
 
-HOME_PATH="/home/$USER"
-GIT_PATH="$HOME_PATH/git"
-DESKTOP_PATH="$HOME_PATH/Desktop"
+GIT_PATH="$HOME/git"
+DESKTOP_PATH="$HOME/Desktop"
 
 # Colors
 ESC_SEQ="\x1b["
@@ -63,10 +62,22 @@ Encoding=UTF-8
 Version=1.0
 Type=Application
 Terminal=false
-Exec=xfce4-terminal -e  /home/$USER/git/runTerm.sh
+Exec=xfce4-terminal -e  $HOME/git/runTerm.sh
 Name=Quagga" > $DESKTOP_PATH/quagga.desktop
 
 chmod a+x $DESKTOP_PATH/quagga.desktop
+
+echo "[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=$HOME/eclipse/eclipse
+Path=$HOME/eclipse
+Icon=$HOME/eclipse/icon.xpm
+Name=Eclipse" > $DESKTOP_PATH/eclipse.desktop
+
+chmod a+x $DESKTOP_PATH/eclipse.desktop
 
 
 echo
