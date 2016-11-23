@@ -14,18 +14,13 @@ BLUE=$ESC_SEQ"34;01m"
 MAGENTA=$ESC_SEQ"35;01m"
 CYAN=$ESC_SEQ"36;01m"
 
-cecho ()                     # Color-echo.
-                             # Argument $1 = message
-                             # Argument $2 = color
-{
-local default_msg="No message passed."
-                             # Doesn't really need to be a local variable.
+cecho () {
+  local default_msg="No message passed."
 
-message=${1:-$default_msg}   # Defaults to default message.
-color=${2:-$BLACK}           # Defaults to black, if not specified.
+  message=${1:-$default_msg}  
+  color=${2:-$BLACK}      
 
-  echo -e "$color$message$RESET"
-  
+  echo -e "$color$message$RESET"  
   return
 }  
 
@@ -35,6 +30,7 @@ cecho "************************************************************************"
 cecho "*             QUAGGA EIGRP development install script                  *" $RED
 cecho "*                                                                      *" $YELLOW
 cecho "*                         Martin Kontsek                               *" $GREEN
+cecho "*                             2016                                     *" $GREEN
 cecho "************************************************************************" $YELLOW
 echo
 echo
@@ -46,16 +42,17 @@ sudo apt-get install gcc git automake autoconf libtool dia texinfo gawk dynamips
 
 echo
 echo "************************************************************************"
-echo "Add required user quagga, as password use quagga."
-sudo adduser quagga
+echo "Add required user quagga."
+sudo adduser --no-create-home --disabled-password --disabled-login --gecos "" quagga
 
 echo
 echo "************************************************************************"
-echo "Copy sctipts to their location."
-cp ../build/build.sh $GIT_PATH/ 
-cp ../run/rightsVarRun.sh $GIT_PATH/ 
-cp ../run/runTerm.sh $GIT_PATH/ 
-cp ../run/cpQuaggaConf.sh $GIT_PATH/ 
+echo "Copy scripts to their location."
+mkdir -pv $GIT_PATH
+cp -v ../build/build.sh $GIT_PATH/ 
+cp -v ../run/rightsVarRun.sh $GIT_PATH/ 
+cp -v ../run/runTerm.sh $GIT_PATH/ 
+cp -v ../run/cpQuaggaConf.sh $GIT_PATH/ 
 
 
 echo
@@ -74,13 +71,12 @@ chmod a+x $DESKTOP_PATH/quagga.desktop
 
 echo
 echo "************************************************************************"
-echo "Download Eclipse Mars x64."
-wget http://ftp.heanet.ie/pub/eclipse//technology/epp/downloads/release/mars/R/eclipse-cpp-mars-R-linux-gtk-x86_64.tar.gz
-
+echo "Download Eclipse Neon x64."
+wget http://mirror.cc.columbia.edu/pub/software/eclipse/technology/epp/downloads/release/neon/1a/eclipse-cpp-neon-1a-linux-gtk-x86_64.tar.gz
 
 echo
 echo "************************************************************************"
 echo "Unpack and install Eclipse."
-tar -zxvf eclipse-cpp-mars-R-linux-gtk-x86_64.tar.gz
-rm eclipse-cpp-mars-R-linux-gtk-x86_64.tar.gz
-mv eclipse $HOME_PATH/eclipse/
+tar -xf eclipse-cpp-*.tar.gz
+rm -fv eclipse-cpp-*.tar.gz
+mv -v eclipse $HOME_PATH/
