@@ -10,15 +10,12 @@ BLUE=$ESC_SEQ"34;01m"
 MAGENTA=$ESC_SEQ"35;01m"
 CYAN=$ESC_SEQ"36;01m"
 
-cecho ()                     # Color-echo.
-                             # Argument $1 = message
-                             # Argument $2 = color
+cecho () 
 {
-local default_msg="No message passed."
-                             # Doesn't really need to be a local variable.
+  local default_msg="No message passed."
 
-message=${1:-$default_msg}   # Defaults to default message.
-color=${2:-$BLACK}           # Defaults to black, if not specified.
+  message=${1:-$default_msg}
+  color=${2:-$BLACK}
 
   echo -e "$color$message$RESET"
   
@@ -31,34 +28,35 @@ cecho "************************************************************************"
 cecho "*                   QUAGGA EIGRP builder script                        *" $RED
 cecho "*                                                                      *" $YELLOW
 cecho "*                         Martin Kontsek                               *" $GREEN
+cecho "*                              2016                                    *" $GREEN
 cecho "************************************************************************" $YELLOW
 echo
 echo
 
 cecho "************************************************" $YELLOW
-cecho " Vymazanie a znova nakopirovanie zlozky build" $RED
+cecho " Cleanup and copy Quagga to new folder 'build'" $RED
 cecho "************************************************" $YELLOW
 echo -e "$GREEN"
-read -p "  Stlacte klavesu pre pokracovanie."
+read -p "  Press key to continue..."
 echo -e "$RESET"
-rm -r build
+rm -rf build
 mkdir build
 cp -r Quagga-EIGRP/* build/
 
 cecho "************************************************" $YELLOW
-cecho " Spustenie bootstrap.sh" $RED
+cecho " Launch bootstrap.sh" $RED
 cecho "************************************************" $YELLOW
 echo -e "$GREEN"
-read -p "  Stlacte klavesu pre pokracovanie."
+read -p "  Press key to continue..."
 echo -e "$RESET"
 cd build
 ./bootstrap.sh
 
 cecho "************************************************" $YELLOW
-cecho " Konfiguracia" $RED
+cecho " Configure" $RED
 cecho "************************************************" $YELLOW
 echo -e "$GREEN"
-read -p "  Stlacte klavesu pre pokracovanie."
+read -p "  Press key to continue..."
 echo -e "$RESET"
 ./configure
 
@@ -66,19 +64,19 @@ cecho "************************************************" $YELLOW
 cecho " Make" $RED
 cecho "************************************************" $YELLOW
 echo -e "$GREEN"
-read -p "  Stlacte klavesu pre pokracovanie."
+read -p "  Press key to continue..."
 echo -e "$RESET"
-make -j4
+make -j8
 
 cecho "************************************************" $YELLOW
-cecho " Instalacia" $RED
+cecho " Install" $RED
 cecho "************************************************" $YELLOW
 echo -e "$GREEN"
-read -p "  Stlacte klavesu pre pokracovanie."
+read -p "  Press key to continue..."
 echo -e "$RESET"
 make install
 
 
 cecho "************************************************************************" $YELLOW
-cecho "                     Koniec scriptu" $GREEN
+cecho "                       End of the script" $GREEN
 cecho "************************************************************************" $YELLOW
