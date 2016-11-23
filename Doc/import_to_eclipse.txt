@@ -1,0 +1,28 @@
+#
+# import_to_eclipse.txt
+# Copyright (c) 2016
+#
+# Author:
+#   Martin Kontsek
+#
+# This file is part of QUAGGA-scripts
+#
+# QUAGGA-scripts is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the
+# Free Software Foundation; either version 2, or (at your option) any
+# later version.
+#
+# QUAGGA-scripts is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+#
+#
+# How to import Quagga project to Eclipse
+#
+
+1. Open Eclipse
+2. File -> Import... -> C/C++ -> Existing code as Autotools project -> Next
+3. Existing code location -> Browse... -> Browse for Quagga-EIGRP folder
+4. Select project language -> C Project -> Next
+5. Finish
