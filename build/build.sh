@@ -32,7 +32,7 @@ BLUE=$ESC_SEQ"34;01m"
 MAGENTA=$ESC_SEQ"35;01m"
 CYAN=$ESC_SEQ"36;01m"
 
-cecho () 
+cecho ()
 {
   local default_msg="No message passed."
 
@@ -40,17 +40,19 @@ cecho ()
   color=${2:-$BLACK}
 
   echo -e "$color$message$RESET"
-  
-  return
-}  
 
+  return
+}
+
+# Where to store Quagga runtime files
+QUAGGA_RUN_PREFIX=/var/quagga
 
 clear
 cecho "************************************************************************" $YELLOW
 cecho "*                   QUAGGA EIGRP builder script                        *" $RED
 cecho "*                                                                      *" $YELLOW
 cecho "*                         Martin Kontsek                               *" $GREEN
-cecho "*                              2016                                    *" $GREEN
+cecho "*                              2018                                    *" $GREEN
 cecho "************************************************************************" $YELLOW
 echo
 echo
@@ -80,7 +82,7 @@ cecho "************************************************" $YELLOW
 echo -e "$GREEN"
 read -p "  Press key to continue..."
 echo -e "$RESET"
-./configure
+./configure --localstatedir=$QUAGGA_RUN_PREFIX
 
 cecho "************************************************" $YELLOW
 cecho " Make" $RED
@@ -97,6 +99,14 @@ echo -e "$GREEN"
 read -p "  Press key to continue..."
 echo -e "$RESET"
 sudo make install
+sudo ldconfig
+
+cecho "************************************************" $YELLOW
+cecho " Creating quagga runtime directory" $RED
+cecho "     and setting proper owner" $RED
+cecho "************************************************" $YELLOW
+sudo mkdir -p $QUAGGA_RUN_PREFIX
+sudo chown -R quagga:quagga $QUAGGA_RUN_PREFIX
 
 
 cecho "************************************************************************" $YELLOW

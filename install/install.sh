@@ -16,12 +16,12 @@ CYAN=$ESC_SEQ"36;01m"
 cecho () {
   local default_msg="No message passed."
 
-  message=${1:-$default_msg}  
-  color=${2:-$BLACK}      
+  message=${1:-$default_msg}
+  color=${2:-$BLACK}
 
-  echo -e "$color$message$RESET"  
+  echo -e "$color$message$RESET"
   return
-}  
+}
 
 
 clear
@@ -29,15 +29,19 @@ cecho "************************************************************************"
 cecho "*             QUAGGA EIGRP development install script                  *" $RED
 cecho "*                                                                      *" $YELLOW
 cecho "*                         Martin Kontsek                               *" $GREEN
-cecho "*                             2016                                     *" $GREEN
+cecho "*                             2018                                     *" $GREEN
 cecho "************************************************************************" $YELLOW
 echo
 echo
 
 echo
 echo "************************************************************************"
-echo "Install required packages for Quagga development"
-sudo apt-get install gcc git automake autoconf libtool dia texinfo gawk dynamips dynagen
+echo "Update repositories"
+sudo apt-get update
+echo "Install required packages for Quagga building"
+sudo apt-get install gcc git automake autoconf libtool dia texinfo gawk
+echo "Install packages for Quagga testing"
+sudo apt-get install vim tmux mc nmon tcpdump dynamips dynagen
 
 echo
 echo "************************************************************************"
@@ -48,10 +52,9 @@ echo
 echo "************************************************************************"
 echo "Copy scripts to their location."
 mkdir -pv $GIT_PATH
-cp -v ../build/build.sh $GIT_PATH/ 
-cp -v ../run/rightsVarRun.sh $GIT_PATH/ 
-cp -v ../run/runTerm.sh $GIT_PATH/ 
-cp -v ../run/cpQuaggaConf.sh $GIT_PATH/ 
+cp -v ../build/build.sh $GIT_PATH/
+cp -v ../run/runTerm.sh $GIT_PATH/
+cp -v ../run/cpQuaggaConf.sh $GIT_PATH/
 
 
 echo
@@ -82,8 +85,8 @@ chmod a+x $DESKTOP_PATH/eclipse.desktop
 
 echo
 echo "************************************************************************"
-echo "Download Eclipse Neon x64."
-wget http://mirror.cc.columbia.edu/pub/software/eclipse/technology/epp/downloads/release/neon/1a/eclipse-cpp-neon-1a-linux-gtk-x86_64.tar.gz
+echo "Download Eclipse Oxygen.2 x64."
+wget http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/technology/epp/downloads/release/oxygen/2/eclipse-cpp-oxygen-2-linux-gtk-x86_64.tar.gz
 
 echo
 echo "************************************************************************"
